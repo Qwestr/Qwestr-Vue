@@ -1,9 +1,7 @@
 <template>
   <v-data-table
-    v-model="selected"
     :headers="headers"
     :items="items"
-    select-all
     :pagination.sync="pagination"
     item-key="name"
     class="elevation-1"
@@ -14,7 +12,7 @@
           v-for="header in props.headers"
           :key="header.text"
           :class="classListForHeader(header)"
-          @click="changeSort(header.value)"
+          @click="changeSort(header)"
         >
           <v-icon v-if="header.sortable" small>
             arrow_upward
@@ -26,6 +24,15 @@
     <template slot="items" slot-scope="props">
       <tr :active="props.selected" @click="props.selected = !props.selected">
         <td>{{ props.item.name }}</td>
+        <td>{{ props.item.status }}</td>
+        <td class="justify-center layout px-0">
+          <v-btn icon class="mx-0">
+            <v-icon color="teal">edit</v-icon>
+          </v-btn>
+          <v-btn icon class="mx-0">
+            <v-icon color="pink">delete</v-icon>
+          </v-btn>
+        </td>
       </tr>
     </template>
   </v-data-table>
@@ -39,7 +46,6 @@ export default {
         sortBy: 'name',
         descending: true
       },
-      selected: [],
       headers: [
         { text: 'Qwest', value: 'name', align: 'left', sortable: true },
         { text: 'Status', value: 'status', align: 'left', sortable: true },
@@ -53,6 +59,10 @@ export default {
         {
           name: 'Open a Persian Restaurant',
           status: 'Complete'
+        },
+        {
+          name: 'Do Something',
+          status: 'Incomplete'
         }
       ]
     }
@@ -63,17 +73,25 @@ export default {
       if (header.sortable) {
         classList.push('sortable')
       }
+      if (header.align === 'left') {
+        classList.push('text-xs-left')
+      } else if (header.align === 'right') {
+        classList.push('text-xs-right')
+      }
       if (header.value === this.pagination.sortBy) {
         classList.push('active')
       }
       this.pagination.descending ? classList.push('desc') : classList.push('asc')
       return classList
     },
-    changeSort (column) {
-      if (this.pagination.sortBy === column) {
+    changeSort (header) {
+      if (!header.sortable) {
+        return
+      }
+      if (this.pagination.sortBy === header.value) {
         this.pagination.descending = !this.pagination.descending
       } else {
-        this.pagination.sortBy = column
+        this.pagination.sortBy = header.value
         this.pagination.descending = false
       }
     }
