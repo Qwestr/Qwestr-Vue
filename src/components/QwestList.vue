@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { db } from '@/firebase'
+
 export default {
   data () {
     return {
@@ -76,6 +78,9 @@ export default {
         }
       ]
     }
+  },
+  firebase: {
+    qwests: db.ref('qwests')
   },
   methods: {
     classListForHeader (header) {
@@ -115,6 +120,9 @@ export default {
       const index = this.items.indexOf(item)
       this.items.splice(index, 1)
     }
+  },
+  created () {
+    console.log('qwests', this.qwests)
   }
 }
 </script>
