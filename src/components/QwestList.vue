@@ -22,14 +22,14 @@
       </tr>
     </template>
     <template slot="items" slot-scope="props">
-      <tr :active="props.selected" @click="props.selected = !props.selected">
+      <tr>
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.status }}</td>
         <td class="justify-center layout px-0">
           <v-btn icon class="mx-0">
             <v-icon color="teal">edit</v-icon>
           </v-btn>
-          <v-btn icon class="mx-0">
+          <v-btn icon class="mx-0" @click="deleteQwest(props.item)">
             <v-icon color="pink">delete</v-icon>
           </v-btn>
         </td>
@@ -49,20 +49,24 @@ export default {
       headers: [
         { text: 'Qwest', value: 'name', align: 'left', sortable: true },
         { text: 'Status', value: 'status', align: 'left', sortable: true },
-        { text: 'Actions', value: 'action', sortable: false }
+        { text: 'Actions', value: 'name', sortable: false }
       ],
       items: [
         {
-          name: 'Find an Apartment',
-          status: 'Incomplete'
-        },
-        {
-          name: 'Open a Persian Restaurant',
+          name: 'Edit This Qwest',
           status: 'Complete'
         },
         {
-          name: 'Do Something',
+          name: 'Delete This Qwest',
+          status: 'Complete'
+        },
+        {
+          name: 'Complete This Qwest',
           status: 'Incomplete'
+        },
+        {
+          name: 'Restart This Qwest',
+          status: 'Complete'
         }
       ]
     }
@@ -94,6 +98,10 @@ export default {
         this.pagination.sortBy = header.value
         this.pagination.descending = false
       }
+    },
+    deleteQwest (item) {
+      const index = this.items.indexOf(item)
+      this.items.splice(index, 1)
     }
   }
 }
