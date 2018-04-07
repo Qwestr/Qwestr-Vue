@@ -26,10 +26,16 @@
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.status }}</td>
         <td class="justify-center layout px-0">
-          <v-btn icon class="mx-0">
-            <v-icon color="teal">edit</v-icon>
+          <v-btn v-if="props.item.status === 'Incomplete'" @click="completeQwest(props.item)" icon class="mx-0">
+            <v-icon color="grey">check_circle</v-icon>
           </v-btn>
-          <v-btn icon class="mx-0" @click="deleteQwest(props.item)">
+          <v-btn v-else @click="restartQwest(props.item)" icon class="mx-0">
+            <v-icon color="teal">check_circle</v-icon>
+          </v-btn>
+          <v-btn icon class="mx-0">
+            <v-icon color="orange">edit</v-icon>
+          </v-btn>
+          <v-btn @click="deleteQwest(props.item)" icon class="mx-0">
             <v-icon color="pink">delete</v-icon>
           </v-btn>
         </td>
@@ -49,16 +55,16 @@ export default {
       headers: [
         { text: 'Qwest', value: 'name', align: 'left', sortable: true },
         { text: 'Status', value: 'status', align: 'left', sortable: true },
-        { text: 'Actions', value: 'name', sortable: false }
+        { text: 'Actions', value: 'action', sortable: false }
       ],
       items: [
         {
           name: 'Edit This Qwest',
-          status: 'Complete'
+          status: 'Done'
         },
         {
           name: 'Delete This Qwest',
-          status: 'Complete'
+          status: 'Done'
         },
         {
           name: 'Complete This Qwest',
@@ -66,7 +72,7 @@ export default {
         },
         {
           name: 'Restart This Qwest',
-          status: 'Complete'
+          status: 'Done'
         }
       ]
     }
@@ -98,6 +104,12 @@ export default {
         this.pagination.sortBy = header.value
         this.pagination.descending = false
       }
+    },
+    completeQwest (item) {
+      item.status = 'Done'
+    },
+    restartQwest (item) {
+      item.status = 'Incomplete'
     },
     deleteQwest (item) {
       const index = this.items.indexOf(item)
