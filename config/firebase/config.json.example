@@ -1,0 +1,9 @@
+// Copy this to config.json and fill in accordingly
+
+{
+  "apiKey": "",
+  "authDomain": "",
+  "databaseURL": "",
+  "storageBucket": "",
+  "messagingSenderId": ""
+}
