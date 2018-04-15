@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="items"
+    :items="qwests"
     :pagination.sync="pagination"
     item-key="name"
     class="elevation-1"
@@ -24,9 +24,9 @@
     <template slot="items" slot-scope="props">
       <tr>
         <td>{{ props.item.name }}</td>
-        <td>{{ props.item.status }}</td>
+        <td>{{ getStatusText(props.item) }}</td>
         <td class="justify-center layout px-0">
-          <v-btn v-if="props.item.status === 'Incomplete'" @click="completeQwest(props.item)" icon class="mx-0">
+          <v-btn v-if="!props.item.completed" @click="completeQwest(props.item)" icon class="mx-0">
             <v-icon color="grey">check_circle</v-icon>
           </v-btn>
           <v-btn v-else @click="restartQwest(props.item)" icon class="mx-0">
@@ -45,9 +45,12 @@
 </template>
 
 <script>
+import { db } from '@/firebase'
+
 export default {
   data () {
     return {
+      qwests: {},
       pagination: {
         sortBy: 'name',
         descending: true
@@ -56,28 +59,25 @@ export default {
         { text: 'Qwest', value: 'name', align: 'left', sortable: true },
         { text: 'Status', value: 'status', align: 'left', sortable: true },
         { text: 'Actions', value: 'action', sortable: false }
-      ],
-      items: [
-        {
-          name: 'Edit This Qwest',
-          status: 'Done'
-        },
-        {
-          name: 'Delete This Qwest',
-          status: 'Done'
-        },
-        {
-          name: 'Complete This Qwest',
-          status: 'Incomplete'
-        },
-        {
-          name: 'Restart This Qwest',
-          status: 'Done'
-        }
       ]
     }
   },
+  firebase: {
+    qwests: {
+      source: db.ref('qwests'),
+      cancelCallback (error) {
+        console.error('error', error)
+      }
+    }
+  },
   methods: {
+    getStatusText (qwest) {
+      if (qwest.completed) {
+        return 'Completed!'
+      } else {
+        return 'Incomplete'
+      }
+    },
     classListForHeader (header) {
       const classList = ['column']
       if (header.sortable) {
@@ -105,15 +105,14 @@ export default {
         this.pagination.descending = false
       }
     },
-    completeQwest (item) {
-      item.status = 'Done'
+    completeQwest (qwest) {
+      this.$firebaseRefs.qwests.child(qwest['.key']).child('completed').set(true)
     },
-    restartQwest (item) {
-      item.status = 'Incomplete'
+    restartQwest (qwest) {
+      this.$firebaseRefs.qwests.child(qwest['.key']).child('completed').set(false)
     },
-    deleteQwest (item) {
-      const index = this.items.indexOf(item)
-      this.items.splice(index, 1)
+    deleteQwest (qwest) {
+      this.$firebaseRefs.qwests.child(qwest['.key']).remove()
     }
   }
 }

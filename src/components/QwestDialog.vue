@@ -19,7 +19,7 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Name" required></v-text-field>
+              <v-text-field v-model="qwest.name" label="Name" required></v-text-field>
             </v-flex>
           </v-layout>
         </v-container>
@@ -35,15 +35,38 @@
 </template>
 
 <script>
+import { db } from '@/firebase'
+
 export default {
   data () {
     return {
+      qwest: {
+        name: null,
+        completed: false
+      },
       dialog: false
+    }
+  },
+  firebase: {
+    qwests: {
+      source: db.ref('qwests'),
+      cancelCallback (error) {
+        console.error('error', error)
+      }
     }
   },
   methods: {
     createQwest () {
-      console.log('dialog', this.dialog)
+      try {
+        // Create the new Qwest
+        this.$firebaseRefs.qwests.push(this.qwest)
+        // Clear the inputs
+        this.qwest.name = null
+        // Close the dialog
+        this.dialog = false
+      } catch (error) {
+        console.log('error', error)
+      }
     }
   }
 }
