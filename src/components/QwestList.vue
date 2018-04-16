@@ -32,7 +32,7 @@
           <v-btn v-else @click="restartQwest(props.item)" icon class="mx-0">
             <v-icon color="teal">check_circle</v-icon>
           </v-btn>
-          <v-btn icon class="mx-0">
+          <v-btn @click="editQwest(props.item)" icon class="mx-0">
             <v-icon color="orange">edit</v-icon>
           </v-btn>
           <v-btn @click="deleteQwest(props.item)" icon class="mx-0">
@@ -110,6 +110,10 @@ export default {
     },
     restartQwest (qwest) {
       this.$firebaseRefs.qwests.child(qwest['.key']).child('completed').set(false)
+    },
+    editQwest (qwest) {
+      // Dispatch the storeQwest action
+      this.$store.dispatch('storeQwest', this.$firebaseRefs.qwests.child(qwest['.key']))
     },
     deleteQwest (qwest) {
       this.$firebaseRefs.qwests.child(qwest['.key']).remove()
