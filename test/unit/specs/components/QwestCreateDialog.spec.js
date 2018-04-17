@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import QwestDialog from '@/components/QwestDialog'
+import QwestCreateDialog from '@/components/QwestCreateDialog'
 
-describe('Hello.vue', () => {
+describe('QwestCreateDialog.vue', () => {
   it('should render correctly', () => {
-    const Constructor = Vue.extend(QwestDialog)
+    const Constructor = Vue.extend(QwestCreateDialog)
     const vm = new Constructor().$mount()
     expect(vm).to.equal(true)
   })
