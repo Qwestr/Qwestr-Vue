@@ -57,7 +57,7 @@ export default {
       },
       headers: [
         { text: 'Qwest', value: 'name', align: 'left', sortable: true },
-        { text: 'Status', value: 'status', align: 'left', sortable: true },
+        { text: 'Status', value: 'completed', align: 'left', sortable: true },
         { text: 'Actions', value: 'action', sortable: false }
       ]
     }
