@@ -41,8 +41,7 @@ export default {
   data () {
     return {
       qwest: {
-        name: null,
-        completed: false
+        name: null
       },
       dialog: false
     }
