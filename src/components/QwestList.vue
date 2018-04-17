@@ -113,7 +113,8 @@ export default {
     },
     editQwest (qwest) {
       // Dispatch the storeQwest action
-      this.$store.dispatch('storeQwest', this.$firebaseRefs.qwests.child(qwest['.key']))
+      console.log('qwest', qwest)
+      this.$store.dispatch('storeQwest', qwest)
     },
     deleteQwest (qwest) {
       this.$firebaseRefs.qwests.child(qwest['.key']).remove()

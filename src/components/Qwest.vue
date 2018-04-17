@@ -19,7 +19,8 @@ export default {
   },
   computed: {
     isQwestLoaded () {
-      return this.$store.getters['qwest'].key
+      // return this.$store.getters['qwest'].key
+      return this.$store.getters['qwest']['.key']
     }
   }
 }
