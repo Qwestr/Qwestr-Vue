@@ -113,7 +113,6 @@ export default {
     },
     editQwest (qwest) {
       // Dispatch the storeQwest action
-      console.log('qwest', qwest)
       this.$store.dispatch('storeQwest', qwest)
     },
     deleteQwest (qwest) {

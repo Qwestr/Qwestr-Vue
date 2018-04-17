@@ -16,7 +16,6 @@ export const getters = {
 
 export const mutations = {
   storeQwest (state, payload) {
-    console.log('payload', payload)
     state.qwest = payload
   },
   clearQwest (state) {
