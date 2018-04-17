@@ -109,7 +109,7 @@ export default {
       this.$firebaseRefs.qwests.child(qwest['.key']).child('completed').set(true)
     },
     restartQwest (qwest) {
-      this.$firebaseRefs.qwests.child(qwest['.key']).child('completed').set(false)
+      this.$firebaseRefs.qwests.child(qwest['.key']).child('completed').set(null)
     },
     editQwest (qwest) {
       // Dispatch the storeQwest action
