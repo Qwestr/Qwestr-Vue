@@ -35,7 +35,7 @@ export default {
   firebase: {
     qwest: {
       // source: this.qwestRef,
-      source: db.ref('qwests'),
+      source: console.log('this.$store', this.$store) && this.$store.getters['qwest'].key ? this.$store.getters['qwest'] : db.ref('qwests'),
       asObject: true,
       cancelCallback (error) {
         console.error('error', error)
