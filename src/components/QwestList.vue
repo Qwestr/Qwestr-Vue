@@ -24,14 +24,15 @@
     <template slot="items" slot-scope="props">
       <tr>
         <td>{{ props.item.name }}</td>
-        <td>{{ getStatusText(props.item) }}</td>
-        <td class="justify-center layout px-0">
+        <td class="px-5">
           <v-btn v-if="!props.item.completed" @click="completeQwest(props.item)" icon class="mx-0">
             <v-icon color="grey">check_circle</v-icon>
           </v-btn>
           <v-btn v-else @click="restartQwest(props.item)" icon class="mx-0">
             <v-icon color="teal">check_circle</v-icon>
           </v-btn>
+        </td>
+        <td class="justify-center layout px-0">
           <v-btn @click="editQwest(props.item)" icon class="mx-0">
             <v-icon color="orange">edit</v-icon>
           </v-btn>
@@ -71,13 +72,6 @@ export default {
     }
   },
   methods: {
-    getStatusText (qwest) {
-      if (qwest.completed) {
-        return 'Completed!'
-      } else {
-        return 'Incomplete'
-      }
-    },
     classListForHeader (header) {
       const classList = ['column']
       if (header.sortable) {
