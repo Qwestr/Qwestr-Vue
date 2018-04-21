@@ -29,6 +29,17 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <router-link v-if="!auth" :to="{name: 'login'}" tag="v-btn" class="btn--flat" activeClass="btn--active" flat>
+          Login
+        </router-link>
+        <router-link v-if="!auth" :to="{name: 'sign-up'}" tag="v-btn" class="btn--flat" activeClass="btn--active">
+          Sign Up
+        </router-link>
+        <v-btn flat v-if="auth" @click="logout">
+          Logout
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <router-view/>
@@ -41,6 +52,7 @@
 
 <script>
 export default {
+  name: 'App',
   data () {
     return {
       drawer: false,
@@ -52,6 +64,10 @@ export default {
       title: 'Qwestr'
     }
   },
-  name: 'App'
+  computed: {
+    auth () {
+      return this.$store.getters['user']
+    }
+  }
 }
 </script>
