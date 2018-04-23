@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import Qwest from '@/components/Qwest'
+import Login from '@/components/Login'
 
-describe('Qwest.vue', () => {
+describe('Login.vue', () => {
   it('should render correctly', () => {
-    const Constructor = Vue.extend(Qwest)
+    const Constructor = Vue.extend(Login)
     const vm = new Constructor().$mount()
     expect(vm).to.equal(true)
   })
