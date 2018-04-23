@@ -42,7 +42,7 @@
 import validations from '@/validations'
 
 export default {
-  data() {
+  data () {
     return {
       login: {
         email: '',
@@ -60,7 +60,7 @@ export default {
     }
   },
   methods: {
-    async submitForm() {
+    async submitForm () {
       try {
         // Set isDataProcessing to true
         this.isDataProcessing = true
