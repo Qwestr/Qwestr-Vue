@@ -34,6 +34,10 @@ export const mutations = {
   },
   clearQwest (state) {
     state.qwest = {}
+  },
+  clearAll (state) {
+    state.user = {}
+    state.qwest = {}
   }
 }
 
@@ -41,6 +45,10 @@ export const actions = {
   signup ({ commit }, payload) {
     // Commit the corresponding mutation
     commit('storeUser', payload)
+  },
+  logout ({ commit }) {
+    // Commit the clearAll mutation
+    commit('clearAll')
   },
   storeQwest ({ commit }, payload) {
     // Commit the corresponding mutation

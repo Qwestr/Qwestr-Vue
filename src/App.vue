@@ -68,6 +68,14 @@ export default {
     isUserLoaded () {
       return this.$store.getters['isUserLoaded']
     }
+  },
+  methods: {
+    logout () {
+      // Dispatch the logout action
+      this.$store.dispatch('logout')
+      // Redirect to the home page
+      this.$router.replace({ name: 'home' })
+    }
   }
 }
 </script>
