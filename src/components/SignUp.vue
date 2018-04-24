@@ -8,6 +8,8 @@
         <v-form v-model="valid" class="pa-3">
           <v-text-field
             label="Username"
+            hint="Please create a username for your account"
+            persistent-hint
             v-model="user.username"
             :rules="usernameRules"
             required
