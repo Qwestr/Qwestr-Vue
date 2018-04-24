@@ -30,13 +30,13 @@
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <router-link v-if="!auth" :to="{name: 'login'}" tag="v-btn" class="btn--flat" activeClass="btn--active" flat>
+        <router-link v-if="!isUserLoaded" :to="{name: 'login'}" tag="v-btn" class="btn--flat" activeClass="btn--active" flat>
           Login
         </router-link>
-        <router-link v-if="!auth" :to="{name: 'sign-up'}" tag="v-btn" class="btn--flat" activeClass="btn--active">
+        <router-link v-if="!isUserLoaded" :to="{name: 'sign-up'}" tag="v-btn" class="btn--flat" activeClass="btn--active">
           Sign Up
         </router-link>
-        <v-btn flat v-if="auth" @click="logout">
+        <v-btn flat v-if="isUserLoaded" @click="logout">
           Logout
         </v-btn>
       </v-toolbar-items>
@@ -65,8 +65,8 @@ export default {
     }
   },
   computed: {
-    auth () {
-      return this.$store.getters['user']
+    isUserLoaded () {
+      return this.$store.getters['isUserLoaded']
     }
   }
 }

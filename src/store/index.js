@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -5,16 +6,29 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
+  user: {},
   qwest: {}
 }
 
 export const getters = {
+  user (state) {
+    return state.user
+  },
+  isUserLoaded (state) {
+    return !_.isEmpty(state.user)
+  },
   qwest (state) {
     return state.qwest
   }
 }
 
 export const mutations = {
+  storeUser (state, payload) {
+    state.user = payload
+  },
+  clearUser (state) {
+    state.user = {}
+  },
   storeQwest (state, payload) {
     state.qwest = payload
   },
@@ -24,6 +38,10 @@ export const mutations = {
 }
 
 export const actions = {
+  signup ({ commit }, payload) {
+    // Commit the corresponding mutation
+    commit('storeUser', payload)
+  },
   storeQwest ({ commit }, payload) {
     // Commit the corresponding mutation
     commit('storeQwest', payload)
