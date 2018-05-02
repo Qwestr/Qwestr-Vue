@@ -1,3 +1,5 @@
+/* eslint-disable no-new */
+
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
@@ -6,6 +8,7 @@ import router from './router'
 import store from './store'
 import VueFire from 'vuefire'
 import Vuetify from 'vuetify'
+import firebase from 'firebase'
 import 'vuetify/dist/vuetify.min.css'
 
 // Setup Vue plugins
@@ -14,11 +17,20 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in.
+    console.log('user', user)
+  } else {
+    // No user is signed in.
+    console.log('no user logged in')
+  }
+  // Load main VueJS component
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
+  })
 })
