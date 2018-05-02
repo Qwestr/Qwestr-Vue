@@ -7,14 +7,6 @@
         </v-card-title>
         <v-form v-model="valid" class="pa-3">
           <v-text-field
-            label="Username"
-            hint="Please create a username for your account"
-            persistent-hint
-            v-model="user.username"
-            :rules="usernameRules"
-            required
-          ></v-text-field>
-          <v-text-field
             label="Email"
             hint="We'll never share your email with anyone else"
             persistent-hint
@@ -55,13 +47,9 @@ export default {
   data () {
     return {
       user: {
-        username: '',
         email: '',
         password: ''
       },
-      usernameRules: [
-        validations.usernameRequiredRule
-      ],
       emailRules: [
         validations.emailRequiredRule,
         validations.emailValidRule

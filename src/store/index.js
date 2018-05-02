@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import firebase from 'firebase'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -42,8 +43,10 @@ export const mutations = {
 }
 
 export const actions = {
-  signup ({ commit }, payload) {
-    // Commit the corresponding mutation
+  async signup ({ commit }, payload) {
+    // Sign up user on Firebase
+    await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+    // // Commit the corresponding mutation
     commit('storeUser', payload)
   },
   logout ({ commit }) {
