@@ -52,6 +52,8 @@ export const actions = {
     commit('storeUser', payload)
   },
   logout ({ commit }) {
+    // Logout user on Firebase
+    firebase.auth().signOut()
     // Commit the clearAll mutation
     commit('clearAll')
   },
