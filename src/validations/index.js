@@ -1,3 +1,7 @@
+const usernameRequiredRule = v => {
+  return !!v || 'Username is required'
+}
+
 const emailRequiredRule = v => {
   return !!v || 'Email is required'
 }
@@ -19,6 +23,7 @@ const passwordContentRule = v => {
 }
 
 export default {
+  usernameRequiredRule,
   emailRequiredRule,
   emailValidRule,
   passwordRequiredRule,
