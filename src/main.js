@@ -19,11 +19,8 @@ Vue.config.productionTip = false
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    // User is signed in.
-    console.log('user', user)
-  } else {
-    // No user is signed in.
-    console.log('no user logged in')
+    // Dispatch the storeUser action
+    store.dispatch('storeUser', user)
   }
   // Load main VueJS component
   new Vue({

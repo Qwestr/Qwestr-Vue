@@ -48,12 +48,16 @@ export const actions = {
     const user = await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
     // Update user
     await user.updateProfile({ displayName: payload.username })
-    // Commit the corresponding mutation
+    // Commit the storeUser mutation
     commit('storeUser', payload)
   },
   logout ({ commit }) {
     // Commit the clearAll mutation
     commit('clearAll')
+  },
+  storeUser ({ commit }, payload) {
+    // Commit the corresponding mutation
+    commit('storeUser', payload)
   },
   storeQwest ({ commit }, payload) {
     // Commit the corresponding mutation
