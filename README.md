@@ -30,6 +30,9 @@ npm test
 ## Deployment
 
 ``` bash
+# build for production with minification
+npm run build
+
 # deploy to firebase
 firebase deploy
 ```
