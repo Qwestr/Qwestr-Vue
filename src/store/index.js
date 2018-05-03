@@ -49,7 +49,13 @@ export const actions = {
     // Update user
     await user.updateProfile({ displayName: payload.displayName })
     // Commit the storeUser mutation
-    commit('storeUser', payload)
+    commit('storeUser', user)
+  },
+  async login ({ commit }, payload) {
+    // Sign in user on Firebase
+    const user = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+    // Commit the storeUser mutation
+    commit('storeUser', user)
   },
   logout ({ commit }) {
     // Logout user on Firebase
