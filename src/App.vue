@@ -6,8 +6,6 @@
       enable-resize-watcher
       v-model="drawer"
       :mini-variant="miniVariant"
-      :clipped="clipped"
-      :fixed="fixed"
     >
       <v-list>
         <v-list-tile
@@ -24,27 +22,29 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar
-      app
-      :clipped-left="clipped"
-    >
+    <v-toolbar app>
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn icon @click="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
       </v-btn>
-      <v-btn icon @click="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click="fixed = !fixed">
-        <v-icon>remove</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <router-link v-if="!isUserLoaded" :to="{name: 'login'}" tag="v-btn" class="btn--flat" activeClass="btn--active" flat>
+          Login
+        </router-link>
+        <router-link v-if="!isUserLoaded" :to="{name: 'sign-up'}" tag="v-btn" class="btn--flat" activeClass="btn--active">
+          Sign Up
+        </router-link>
+        <v-btn flat v-if="isUserLoaded" @click="logout">
+          Logout
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <router-view/>
     </v-content>
-    <v-footer :fixed="fixed" app>
+    <v-footer app>
       <span>Qwestr &copy; 2018</span>
     </v-footer>
   </v-app>
@@ -52,11 +52,10 @@
 
 <script>
 export default {
+  name: 'App',
   data () {
     return {
-      clipped: false,
       drawer: false,
-      fixed: false,
       items: [{
         icon: 'bubble_chart',
         title: 'Qwests'
@@ -65,6 +64,18 @@ export default {
       title: 'Qwestr'
     }
   },
-  name: 'App'
+  computed: {
+    isUserLoaded () {
+      return this.$store.getters['isUserLoaded']
+    }
+  },
+  methods: {
+    logout () {
+      // Dispatch the logout action
+      this.$store.dispatch('logout')
+      // Redirect to the home page
+      this.$router.replace({ name: 'home' })
+    }
+  }
 }
 </script>

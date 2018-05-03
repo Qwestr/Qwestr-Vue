@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
 
-describe('Hello.vue', () => {
+describe('Home.vue', () => {
   it('should render correctly', () => {
-    const Constructor = Vue.extend(HelloWorld)
+    const Constructor = Vue.extend(Home)
     const vm = new Constructor().$mount()
     expect(vm).to.equal(true)
   })
