@@ -24,17 +24,9 @@
 </template>
 
 <script>
-import { db } from '@/firebase'
+import { userQwestsRef } from '@/firebase'
 
 export default {
-  firebase: {
-    qwests: {
-      source: db.ref('qwests'),
-      cancelCallback (error) {
-        console.error('error', error)
-      }
-    }
-  },
   computed: {
     isQwestLoaded () {
       return this.$store.getters['qwest']['.key']
@@ -63,6 +55,10 @@ export default {
         console.log('error', error)
       }
     }
+  },
+  created () {
+    // Setup Firebase references
+    this.$bindAsArray('qwests', userQwestsRef())
   }
 }
 </script>

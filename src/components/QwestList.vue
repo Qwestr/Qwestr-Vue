@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { db } from '@/firebase'
+import { userQwestsRef } from '@/firebase'
 
 export default {
   data () {
@@ -61,14 +61,6 @@ export default {
         { text: 'Status', value: 'completed', align: 'left', sortable: true },
         { text: 'Actions', value: 'action', sortable: false }
       ]
-    }
-  },
-  firebase: {
-    qwests: {
-      source: db.ref('qwests'),
-      cancelCallback (error) {
-        console.error('error', error)
-      }
     }
   },
   methods: {
@@ -112,6 +104,10 @@ export default {
     deleteQwest (qwest) {
       this.$firebaseRefs.qwests.child(qwest['.key']).remove()
     }
+  },
+  created () {
+    // Setup Firebase references
+    this.$bindAsArray('qwests', userQwestsRef())
   }
 }
 </script>
