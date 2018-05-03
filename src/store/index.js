@@ -47,7 +47,7 @@ export const actions = {
     // Sign up user on Firebase
     const user = await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
     // Update user
-    await user.updateProfile({ displayName: payload.username })
+    await user.updateProfile({ displayName: payload.displayName })
     // Commit the storeUser mutation
     commit('storeUser', payload)
   },

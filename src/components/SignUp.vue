@@ -7,11 +7,11 @@
         </v-card-title>
         <v-form v-model="valid" class="pa-3">
           <v-text-field
-            label="Username"
-            hint="Please create a username for your account"
+            label="Display Name"
+            hint="Please create a display name for your account"
             persistent-hint
-            v-model="user.username"
-            :rules="usernameRules"
+            v-model="user.displayName"
+            :rules="displayNameRules"
             required
           ></v-text-field>
           <v-text-field
@@ -55,12 +55,12 @@ export default {
   data () {
     return {
       user: {
-        username: '',
+        displayName: '',
         email: '',
         password: ''
       },
-      usernameRules: [
-        validations.usernameRequiredRule
+      displayNameRules: [
+        validations.displayNameRequiredRule
       ],
       emailRules: [
         validations.emailRequiredRule,
