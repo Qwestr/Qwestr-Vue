@@ -12,8 +12,9 @@
           value="true"
           v-for="(item, i) in items"
           :key="i"
+          exact
         >
-          <v-list-tile-action>
+          <v-list-tile-action :to="item.to">
             <v-icon v-html="item.icon"></v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
@@ -58,7 +59,8 @@ export default {
       drawer: false,
       items: [{
         icon: 'bubble_chart',
-        title: 'Qwests'
+        title: 'Home',
+        to: { name: 'home' }
       }],
       miniVariant: false,
       title: 'Qwestr'
