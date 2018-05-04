@@ -21,7 +21,7 @@ export default new Router({
     name: 'sign-up',
     component: SignUp
   }, {
-    path: 'qwest/:key/details',
+    path: '/qwest/:key/details',
     name: 'qwest-details',
     component: QwestDetails
   }]

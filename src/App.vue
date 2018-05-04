@@ -9,12 +9,12 @@
     >
       <v-list>
         <v-list-tile
-          value="true"
           v-for="(item, i) in items"
           :key="i"
+          :to="item.to"
           exact
         >
-          <v-list-tile-action :to="item.to">
+          <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
@@ -58,7 +58,7 @@ export default {
     return {
       drawer: false,
       items: [{
-        icon: 'bubble_chart',
+        icon: 'home',
         title: 'Home',
         to: { name: 'home' }
       }],
