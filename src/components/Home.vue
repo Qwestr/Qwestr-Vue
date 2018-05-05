@@ -1,15 +1,13 @@
 <template>
   <v-container fluid>
-    <v-slide-y-transition mode="out-in">
-      <div v-if="isUserLoaded">
-        <app-qwest-create-dialog></app-qwest-create-dialog>
-        <app-qwest-edit-dialog></app-qwest-edit-dialog>
-        <app-qwest-list></app-qwest-list>
-      </div>
-      <div v-else>
-        <app-landing></app-landing>
-      </div>
-    </v-slide-y-transition>
+    <div v-if="isUserLoaded">
+      <app-qwest-create-dialog></app-qwest-create-dialog>
+      <app-qwest-edit-dialog></app-qwest-edit-dialog>
+      <app-qwest-list></app-qwest-list>
+    </div>
+    <div v-else>
+      <app-landing></app-landing>
+    </div>
   </v-container>
 </template>
 

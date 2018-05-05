@@ -43,7 +43,9 @@
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
-      <router-view/>
+      <v-slide-y-transition mode="out-in">
+        <router-view/>
+      </v-slide-y-transition>
     </v-content>
     <v-footer app>
       <span>Qwestr &copy; 2018</span>
