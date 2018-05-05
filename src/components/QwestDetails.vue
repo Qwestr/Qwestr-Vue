@@ -7,7 +7,7 @@
       bottom
       right
       color="orange"
-      slot="activator"
+      transition="fade-transition"
     >
       <v-icon>add</v-icon>
     </v-btn>
