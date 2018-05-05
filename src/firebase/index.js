@@ -8,6 +8,11 @@ const userQwestsRef = () => {
   return db.ref('users/' + store.getters['user'].uid + '/qwests')
 }
 
+const userQwestRef = (key) => {
+  return db.ref('users/' + store.getters['user'].uid + '/qwests/' + key)
+}
+
 export {
-  userQwestsRef
+  userQwestsRef,
+  userQwestRef
 }

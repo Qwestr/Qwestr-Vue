@@ -9,3 +9,14 @@
     </v-slide-y-transition>
   </v-container>
 </template>
+
+<script>
+import { userQwestRef } from '@/firebase'
+
+export default {
+  created () {
+    // Setup Firebase references
+    this.$bindAsObject('qwest', userQwestRef(this.$route.params.key))
+  }
+}
+</script>
