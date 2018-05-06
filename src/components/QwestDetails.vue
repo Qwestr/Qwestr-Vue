@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-btn
+    <!-- <v-btn
       fab
       dark
       fixed
@@ -10,7 +10,7 @@
       transition="fade-transition"
     >
       <v-icon>add</v-icon>
-    </v-btn>
+    </v-btn> -->
     <v-card>
       <v-card-title primary-title class="headline">
         <v-btn icon :to="{ name: 'home' }" exact>

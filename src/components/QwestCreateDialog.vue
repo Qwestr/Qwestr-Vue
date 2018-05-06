@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <v-fab-transition>
       <v-btn
         fab
@@ -13,7 +13,7 @@
       >
         <v-icon>add</v-icon>
       </v-btn>
-    </v-fab-transition>
+    </v-fab-transition> -->
     <v-dialog v-model="dialog" persistent max-width="500">
       <v-card>
         <v-card-title>
@@ -36,7 +36,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>

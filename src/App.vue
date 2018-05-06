@@ -46,6 +46,7 @@
       <v-slide-y-transition mode="out-in">
         <router-view/>
       </v-slide-y-transition>
+      <app-fab></app-fab>
     </v-content>
     <v-footer app>
       <span>Qwestr &copy; 2018</span>
@@ -54,8 +55,13 @@
 </template>
 
 <script>
+import FAB from '@/components/FAB'
+
 export default {
   name: 'App',
+  components: {
+    'app-fab': FAB
+  },
   data () {
     return {
       drawer: false,

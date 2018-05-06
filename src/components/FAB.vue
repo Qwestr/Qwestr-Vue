@@ -1,0 +1,14 @@
+<template>
+  <v-fab-transition>
+    <v-btn
+      fab
+      dark
+      fixed
+      bottom
+      right
+      color="green"
+    >
+      <v-icon>add</v-icon>
+    </v-btn>
+  </v-fab-transition>
+</template>
