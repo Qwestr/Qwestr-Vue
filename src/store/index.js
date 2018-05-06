@@ -9,7 +9,8 @@ Vue.use(Vuex)
 const state = {
   user: {},
   fab: {},
-  qwest: {}
+  qwest: {},
+  qwestCreateDialog: false
 }
 
 export const getters = {
@@ -30,6 +31,9 @@ export const getters = {
   },
   isQwestLoaded (state) {
     return !_.isEmpty(state.qwest)
+  },
+  qwestCreateDialog (state) {
+    return state.qwestCreateDialog
   }
 }
 
@@ -52,10 +56,14 @@ export const mutations = {
   clearQwest (state) {
     state.qwest = {}
   },
+  toggleQwestCreateDialog (state) {
+    state.qwestCreateDialog = !state.qwestCreateDialog
+  },
   clearAll (state) {
     state.user = {}
     state.fab = {}
     state.qwest = {}
+    state.qwestCreateDialog = false
   }
 }
 
@@ -99,6 +107,10 @@ export const actions = {
   clearQwest ({ commit }) {
     // Commit the corresponding mutation
     commit('clearQwest')
+  },
+  toggleQwestCreateDialog ({ commit }) {
+    // Commit the corresponding mutation
+    commit('toggleQwestCreateDialog')
   }
 }
 

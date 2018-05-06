@@ -9,6 +9,7 @@
         right
         :key="fab.id"
         :color="fab.color"
+        @click="invokeFABAction"
       >
         <v-icon>{{ fab.icon }}</v-icon>
       </v-btn>
@@ -24,6 +25,14 @@ export default {
     },
     fab () {
       return this.$store.getters['fab']
+    }
+  },
+  methods: {
+    invokeFABAction () {
+      if (this.$store.getters['fab'].id === 'QwestListFAB') {
+        // Dispatch the toggleQwestCreateDialog action
+        this.$store.dispatch('toggleQwestCreateDialog')
+      }
     }
   }
 }
