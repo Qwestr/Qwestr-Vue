@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 const state = {
   user: {},
+  fab: {},
   qwest: {}
 }
 
@@ -18,8 +19,17 @@ export const getters = {
   isUserLoaded (state) {
     return !_.isEmpty(state.user)
   },
+  fab (state) {
+    return state.fab
+  },
+  isFABLoaded (state) {
+    return !_.isEmpty(state.fab)
+  },
   qwest (state) {
     return state.qwest
+  },
+  isQwestLoaded (state) {
+    return !_.isEmpty(state.qwest)
   }
 }
 
@@ -30,6 +40,12 @@ export const mutations = {
   clearUser (state) {
     state.user = {}
   },
+  storeFAB (state, payload) {
+    state.fab = payload
+  },
+  clearFAB (state) {
+    state.fab = {}
+  },
   storeQwest (state, payload) {
     state.qwest = payload
   },
@@ -38,6 +54,7 @@ export const mutations = {
   },
   clearAll (state) {
     state.user = {}
+    state.fab = {}
     state.qwest = {}
   }
 }
@@ -66,6 +83,14 @@ export const actions = {
   storeUser ({ commit }, payload) {
     // Commit the corresponding mutation
     commit('storeUser', payload)
+  },
+  storeFAB ({ commit }, payload) {
+    // Commit the corresponding mutation
+    commit('storeFAB', payload)
+  },
+  clearFAB ({ commit }) {
+    // Commit the corresponding mutation
+    commit('clearFAB')
   },
   storeQwest ({ commit }, payload) {
     // Commit the corresponding mutation

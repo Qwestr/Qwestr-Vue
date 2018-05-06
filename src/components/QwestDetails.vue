@@ -1,16 +1,5 @@
 <template>
   <v-container fluid>
-    <!-- <v-btn
-      fab
-      dark
-      fixed
-      bottom
-      right
-      color="orange"
-      transition="fade-transition"
-    >
-      <v-icon>add</v-icon>
-    </v-btn> -->
     <v-card>
       <v-card-title primary-title class="headline">
         <v-btn icon :to="{ name: 'home' }" exact>
@@ -54,6 +43,12 @@ export default {
   created () {
     // Setup Firebase references
     this.$bindAsObject('qwest', userQwestRef(this.$route.params.key))
+    // Dispatch the storeFAB action
+    this.$store.dispatch('storeFAB', {
+      id: 'QwestDetailsFAB',
+      color: 'blue',
+      icon: 'keyboard_arrow_up'
+    })
   }
 }
 </script>

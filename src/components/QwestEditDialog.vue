@@ -29,7 +29,7 @@ import { userQwestsRef } from '@/firebase'
 export default {
   computed: {
     isQwestLoaded () {
-      return this.$store.getters['qwest']['.key']
+      return this.$store.getters['isQwestLoaded']
     },
     qwest () {
       // Create a data copy of the qwest
