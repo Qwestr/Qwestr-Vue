@@ -117,6 +117,8 @@ export default {
         })
         // Dispatch the toggleQwestDetailsEditMode action
         this.$store.dispatch('toggleQwestDetailsEditMode')
+        // Set isDataProcessing to false
+        this.isDataProcessing = false
       } catch (error) {
         // Set isDataProcessing to false
         this.isDataProcessing = false
