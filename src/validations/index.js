@@ -22,11 +22,16 @@ const passwordContentRule = v => {
   return /[0-9]/.test(v) || 'Password must contain at least 1 number'
 }
 
+const nameRequiredRule = v => {
+  return !!v || 'Name is required'
+}
+
 export default {
   displayNameRequiredRule,
   emailRequiredRule,
   emailValidRule,
   passwordRequiredRule,
   passwordLengthRule,
-  passwordContentRule
+  passwordContentRule,
+  nameRequiredRule
 }

@@ -115,6 +115,12 @@ export const actions = {
     // Commit the corresponding mutation
     commit('storeQwest', payload)
   },
+  updateQwest ({ commit }, payload) {
+    // Get Qwest reference from the payload
+    const qwest = payload.qwest
+    // Updated Qwest data
+    qwest.set(payload.data)
+  },
   clearQwest ({ commit }) {
     // Commit the corresponding mutation
     commit('clearQwest')

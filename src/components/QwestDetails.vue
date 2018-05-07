@@ -1,67 +1,96 @@
 <template>
   <v-container fluid>
-    <v-card v-if="!qwestDetailsEditMode">
-      <v-card-title primary-title class="headline">
-        <v-btn icon :to="{ name: 'home' }" exact>
-          <v-icon color="grey">chevron_left</v-icon>
-        </v-btn>
-        {{ qwest.name }}
-        <v-spacer></v-spacer>
-        <v-btn v-if="!qwest.completed" @click="completeQwest()" icon class="mx-0">
-          <v-icon color="grey">check_circle</v-icon>
-        </v-btn>
-        <v-btn v-else @click="restartQwest()" icon class="mx-0">
-          <v-icon color="teal">check_circle</v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-card-text>
-        <div v-if="!qwest.description">
-          <i class="grey--text">
-            No Description Available
-          </i>
-        </div>
-        <div v-else>
-          {{ qwest.description }}
-        </div>
-      </v-card-text>
-    </v-card>
-    <v-card v-else>
-      <v-card-title>
-        <span class="headline">Edit Qwest</span>
-      </v-card-title>
-      <v-form v-model="valid" class="pa-3">
+    <v-fade-transition mode="out-in">
+      <v-card v-if="!qwestDetailsEditMode" key="details">
+        <v-card-title primary-title class="headline">
+          <v-btn icon :to="{ name: 'home' }" exact>
+            <v-icon color="grey">chevron_left</v-icon>
+          </v-btn>
+          {{ qwest.name }}
+          <v-spacer></v-spacer>
+          <v-btn v-if="!qwest.completed" @click="completeQwest()" icon class="mx-0">
+            <v-icon color="grey">check_circle</v-icon>
+          </v-btn>
+          <v-btn v-else @click="restartQwest()" icon class="mx-0">
+            <v-icon color="teal">check_circle</v-icon>
+          </v-btn>
+        </v-card-title>
         <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12>
-                <v-text-field v-model="qwest.name" label="Name" required></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          <small>*indicates required field</small>
+          <div v-if="!qwest.description">
+            <i class="grey--text">
+              No Description Available
+            </i>
+          </div>
+          <div v-else>
+            {{ qwest.description }}
+          </div>
         </v-card-text>
-        <v-card-actions>
-          <v-flex>
-            <v-btn :loading="isDataProcessing" :disabled="!valid" @click="submitForm" color="primary">
-              Update
-            </v-btn>
-            <v-btn @click="toggleQwestDetailsEditMode" color="error">
-              Cancel
-            </v-btn>
-          </v-flex>
-        </v-card-actions>
-      </v-form>
-    </v-card>
+      </v-card>
+      <v-card v-else key="edit">
+        <v-card-title>
+          <span class="headline">Edit Qwest</span>
+        </v-card-title>
+        <v-form v-model="valid" class="pa-3">
+          <v-card-text>
+            <v-container grid-list-md>
+              <v-layout wrap>
+                <v-flex xs12>
+                  <v-text-field
+                    label="Name"
+                    v-model="editableQwest.name"
+                    :rules="nameRules"
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    label="Description"
+                    v-model="editableQwest.description"
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-container>
+            <small>*indicates required field</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-flex>
+              <v-btn :loading="isDataProcessing" :disabled="!valid" @click="submitForm" color="primary">
+                Update
+              </v-btn>
+              <v-btn @click="cancelQwestUpdate" color="error">
+                Cancel
+              </v-btn>
+            </v-flex>
+          </v-card-actions>
+        </v-form>
+      </v-card>
+    </v-fade-transition>
   </v-container>
 </template>
 
 <script>
 import { userQwestRef } from '@/firebase'
+import validations from '@/validations'
 
 export default {
+  data () {
+    return {
+      nameRules: [
+        validations.nameRequiredRule
+      ],
+      isDataProcessing: false,
+      valid: false
+    }
+  },
   computed: {
     qwestDetailsEditMode () {
       return this.$store.getters['qwestDetailsEditMode']
+    },
+    editableQwest () {
+      // Create a data copy of the qwest
+      const data = {...this.qwest}
+      // Remove the .key attribute
+      delete data['.key']
+      // Return data
+      return data
     }
   },
   methods: {
@@ -71,9 +100,29 @@ export default {
     restartQwest () {
       this.$firebaseRefs.qwest.child('completed').set(null)
     },
-    toggleQwestDetailsEditMode () {
+    cancelQwestUpdate () {
+      // Update Firebase references
+      this.$bindAsObject('qwest', userQwestRef(this.$route.params.key))
       // Dispatch the toggleQwestDetailsEditMode action
       this.$store.dispatch('toggleQwestDetailsEditMode')
+    },
+    async submitForm () {
+      try {
+        // Set isDataProcessing to true
+        this.isDataProcessing = true
+        // Dispatch updateQwest action
+        await this.$store.dispatch('updateQwest', {
+          qwest: this.$firebaseRefs.qwest,
+          data: this.editableQwest
+        })
+        // Dispatch the toggleQwestDetailsEditMode action
+        this.$store.dispatch('toggleQwestDetailsEditMode')
+      } catch (error) {
+        // Set isDataProcessing to false
+        this.isDataProcessing = false
+        // Dispatch storeError action
+        this.$store.dispatch('storeError', error)
+      }
     }
   },
   created () {

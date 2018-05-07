@@ -84,6 +84,8 @@ export default {
       this.$store.dispatch('toggleFABDial')
     },
     toggleQwestDetailsEditMode () {
+      // Dispatch the toggleFABDial action
+      this.$store.dispatch('toggleFABDial')
       // Dispatch the toggleQwestDetailsEditMode action
       this.$store.dispatch('toggleQwestDetailsEditMode')
     },
