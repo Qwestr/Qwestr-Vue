@@ -28,25 +28,10 @@
           color="blue"
           slot="activator"
           v-model="fab.dial"
+          @click="toggleFABDial"
         >
           <v-icon>keyboard_arrow_up</v-icon>
-          <v-icon>keyboard_arrow_down</v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          dark
-          small
-          color="green"
-        >
-          <v-icon>edit</v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          dark
-          small
-          color="indigo"
-        >
-          <v-icon>add</v-icon>
+          <v-icon>close</v-icon>
         </v-btn>
         <v-btn
           fab
@@ -55,6 +40,22 @@
           color="red"
         >
           <v-icon>delete</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="orange"
+        >
+          <v-icon>edit</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="green"
+        >
+          <v-icon>add</v-icon>
         </v-btn>
       </v-speed-dial>
     </v-fab-transition>
@@ -77,6 +78,10 @@ export default {
     }
   },
   methods: {
+    toggleFABDial () {
+      // Dispatch the toggleFABDial action
+      this.$store.dispatch('toggleFABDial')
+    },
     toggleQwestCreateDialog () {
       // Dispatch the toggleQwestCreateDialog action
       this.$store.dispatch('toggleQwestCreateDialog')

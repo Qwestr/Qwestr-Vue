@@ -56,6 +56,9 @@ export const mutations = {
   toggleQwestCreateDialog (state) {
     state.qwestCreateDialog = !state.qwestCreateDialog
   },
+  toggleFABDial (state) {
+    state.fab.dial = !state.fab.dial
+  },
   clearAll (state) {
     state.user = {}
     state.fab = {}
@@ -108,6 +111,10 @@ export const actions = {
   toggleQwestCreateDialog ({ commit }) {
     // Commit the corresponding mutation
     commit('toggleQwestCreateDialog')
+  },
+  toggleFABDial ({ commit }) {
+    // Commit the corresponding mutation
+    commit('toggleFABDial')
   }
 }
 

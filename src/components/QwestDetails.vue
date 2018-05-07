@@ -44,7 +44,7 @@ export default {
     // Setup Firebase references
     this.$bindAsObject('qwest', userQwestRef(this.$route.params.key))
     // Dispatch the storeFAB action
-    this.$store.dispatch('storeFAB', { id: 'QwestDetailsFAB' })
+    this.$store.dispatch('storeFAB', { id: 'QwestDetailsFAB', dial: false })
   },
   beforeDestroy () {
     // Dispatch the clearFAB action
