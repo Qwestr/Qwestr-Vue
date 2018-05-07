@@ -28,6 +28,12 @@ export default {
     isUserLoaded () {
       return this.$store.getters['isUserLoaded']
     }
+  },
+  created () {
+    console.log('in Home created hook...')
+  },
+  destroyed () {
+    console.log('in Home destroyed hook...')
   }
 }
 </script>

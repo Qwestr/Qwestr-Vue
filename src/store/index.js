@@ -23,9 +23,6 @@ export const getters = {
   fab (state) {
     return state.fab
   },
-  isFABLoaded (state) {
-    return !_.isEmpty(state.fab)
-  },
   qwest (state) {
     return state.qwest
   },

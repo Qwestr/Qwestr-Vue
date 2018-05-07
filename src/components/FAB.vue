@@ -1,61 +1,64 @@
 <template>
-  <div v-if="isFABLoaded">
-    <!-- <v-fab-transition>
+  <div>
+    <v-fab-transition>
       <v-btn
+        v-show="fab.id === 'QwestListFAB'"
         fab
         dark
         fixed
         bottom
         right
-        :key="fab.id"
-        :color="fab.color"
-        @click="invokeFABAction"
-      >
-        <v-icon>{{ fab.icon }}</v-icon>
-      </v-btn>
-    </v-fab-transition> -->
-    <v-speed-dial
-      fixed
-      bottom
-      right
-      v-model="speedDial"
-    >
-      <v-btn
-        fab
-        dark
-        color="blue"
-        slot="activator"
-        v-model="speedDial"
-      >
-        <v-icon>keyboard_arrow_up</v-icon>
-        <v-icon>keyboard_arrow_down</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
         color="green"
-      >
-        <v-icon>edit</v-icon>
-      </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="indigo"
+        @click="toggleQwestCreateDialog"
       >
         <v-icon>add</v-icon>
       </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        color="red"
+    </v-fab-transition>
+    <v-fab-transition>
+      <v-speed-dial
+        v-show="fab.id === 'QwestDetailsFAB'"
+        fixed
+        bottom
+        right
+        v-model="fab.dial"
       >
-        <v-icon>delete</v-icon>
-      </v-btn>
-    </v-speed-dial>
-</div>
+        <v-btn
+          fab
+          dark
+          color="blue"
+          slot="activator"
+          v-model="fab.dial"
+        >
+          <v-icon>keyboard_arrow_up</v-icon>
+          <v-icon>keyboard_arrow_down</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="green"
+        >
+          <v-icon>edit</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="indigo"
+        >
+          <v-icon>add</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="red"
+        >
+          <v-icon>delete</v-icon>
+        </v-btn>
+      </v-speed-dial>
+    </v-fab-transition>
+  </div>
 </template>
 
 <script>
@@ -74,11 +77,9 @@ export default {
     }
   },
   methods: {
-    invokeFABAction () {
-      if (this.$store.getters['fab'].id === 'QwestListFAB') {
-        // Dispatch the toggleQwestCreateDialog action
-        this.$store.dispatch('toggleQwestCreateDialog')
-      }
+    toggleQwestCreateDialog () {
+      // Dispatch the toggleQwestCreateDialog action
+      this.$store.dispatch('toggleQwestCreateDialog')
     }
   }
 }
