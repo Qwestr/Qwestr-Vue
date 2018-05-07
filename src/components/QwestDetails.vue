@@ -22,7 +22,7 @@
             </i>
           </div>
           <div v-else>
-            {{ qwest.description }}
+            <vue-markdown>{{ qwest.description }}</vue-markdown>
           </div>
         </v-card-text>
       </v-card>
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
 import { userQwestRef } from '@/firebase'
 import validations from '@/validations'
 
@@ -79,6 +80,9 @@ export default {
       isDataProcessing: false,
       valid: false
     }
+  },
+  components: {
+    VueMarkdown
   },
   computed: {
     qwestDetailsEditMode () {
