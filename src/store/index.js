@@ -10,7 +10,8 @@ const state = {
   user: {},
   fab: {},
   qwest: {},
-  qwestCreateDialog: false
+  qwestCreateDialog: false,
+  qwestDetailsEditMode: false
 }
 
 export const getters = {
@@ -31,6 +32,9 @@ export const getters = {
   },
   qwestCreateDialog (state) {
     return state.qwestCreateDialog
+  },
+  qwestDetailsEditMode (state) {
+    return state.qwestDetailsEditMode
   }
 }
 
@@ -53,17 +57,24 @@ export const mutations = {
   clearQwest (state) {
     state.qwest = {}
   },
+  toggleFABDial (state) {
+    state.fab.dial = !state.fab.dial
+  },
   toggleQwestCreateDialog (state) {
     state.qwestCreateDialog = !state.qwestCreateDialog
   },
-  toggleFABDial (state) {
-    state.fab.dial = !state.fab.dial
+  toggleQwestDetailsEditMode (state) {
+    state.qwestDetailsEditMode = !state.qwestDetailsEditMode
+  },
+  resetQwestDetailsEditMode (state) {
+    state.qwestDetailsEditMode = false
   },
   clearAll (state) {
     state.user = {}
     state.fab = {}
     state.qwest = {}
     state.qwestCreateDialog = false
+    state.qwestDetailsEditMode = false
   }
 }
 
@@ -108,13 +119,21 @@ export const actions = {
     // Commit the corresponding mutation
     commit('clearQwest')
   },
+  toggleFABDial ({ commit }) {
+    // Commit the corresponding mutation
+    commit('toggleFABDial')
+  },
   toggleQwestCreateDialog ({ commit }) {
     // Commit the corresponding mutation
     commit('toggleQwestCreateDialog')
   },
-  toggleFABDial ({ commit }) {
+  toggleQwestDetailsEditMode ({ commit }) {
     // Commit the corresponding mutation
-    commit('toggleFABDial')
+    commit('toggleQwestDetailsEditMode')
+  },
+  resetQwestDetailsEditMode ({ commit }) {
+    // Commit the corresponding mutation
+    commit('resetQwestDetailsEditMode')
   }
 }
 

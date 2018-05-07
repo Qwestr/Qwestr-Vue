@@ -46,6 +46,7 @@
           dark
           small
           color="orange"
+          @click="toggleQwestDetailsEditMode()"
         >
           <v-icon>edit</v-icon>
         </v-btn>
@@ -81,6 +82,10 @@ export default {
     toggleFABDial () {
       // Dispatch the toggleFABDial action
       this.$store.dispatch('toggleFABDial')
+    },
+    toggleQwestDetailsEditMode () {
+      // Dispatch the toggleQwestDetailsEditMode action
+      this.$store.dispatch('toggleQwestDetailsEditMode')
     },
     toggleQwestCreateDialog () {
       // Dispatch the toggleQwestCreateDialog action
