@@ -15,9 +15,9 @@
             <v-icon color="teal">check_circle</v-icon>
           </v-btn>
         </v-card-title>
-        <v-card-text>
+        <v-card-text class="grey--text">
           <div v-if="!qwest.description">
-            <i class="grey--text">
+            <i>
               No Description Available
             </i>
           </div>
