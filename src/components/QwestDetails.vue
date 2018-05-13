@@ -22,7 +22,7 @@
             </i>
           </div>
           <div v-else>
-            <vue-markdown>{{ qwest.description }}</vue-markdown>
+            <vue-markdown :source="qwest.description"></vue-markdown>
           </div>
         </v-card-text>
       </v-card>
