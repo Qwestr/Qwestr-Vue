@@ -25,6 +25,7 @@
             <vue-markdown :source="qwest.description"></vue-markdown>
           </div>
         </v-card-text>
+        <app-sub-qwest-list></app-sub-qwest-list>
       </v-card>
       <v-card v-else key="edit">
         <v-card-title>
@@ -68,6 +69,7 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
+import SubQwestList from '@/components/SubQwestList'
 import { userQwestRef } from '@/firebase'
 import validations from '@/validations'
 
@@ -82,6 +84,7 @@ export default {
     }
   },
   components: {
+    'app-sub-qwest-list': SubQwestList,
     VueMarkdown
   },
   computed: {
