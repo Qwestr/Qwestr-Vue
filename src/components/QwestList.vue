@@ -33,6 +33,9 @@
           </v-btn>
         </td>
         <td class="justify-center layout px-0">
+          <v-btn :to="{ name: 'qwest-details', params: { key: props.item['.key'] } }" icon class="mx-0">
+            <v-icon color="cyan">visibility</v-icon>
+          </v-btn>
           <v-btn @click="editQwest(props.item)" icon class="mx-0">
             <v-icon color="orange">edit</v-icon>
           </v-btn>
@@ -108,6 +111,12 @@ export default {
   created () {
     // Setup Firebase references
     this.$bindAsArray('qwests', userQwestsRef())
+    // Dispatch the storeFAB action
+    this.$store.dispatch('storeFAB', { id: 'QwestListFAB' })
+  },
+  beforeDestroy () {
+    // Dispatch the clearFAB action
+    this.$store.dispatch('clearFAB')
   }
 }
 </script>

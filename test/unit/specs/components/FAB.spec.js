@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import Qwest from '@/components/Qwest'
+import FAB from '@/components/FAB'
 
-describe('Qwest.vue', () => {
+describe('FAB.vue', () => {
   it('should render correctly', () => {
-    const Constructor = Vue.extend(Qwest)
+    const Constructor = Vue.extend(FAB)
     const vm = new Constructor().$mount()
     expect(vm).to.equal(true)
   })

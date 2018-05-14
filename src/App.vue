@@ -9,9 +9,10 @@
     >
       <v-list>
         <v-list-tile
-          value="true"
           v-for="(item, i) in items"
           :key="i"
+          :to="item.to"
+          exact
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -42,7 +43,10 @@
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
-      <router-view/>
+      <v-slide-y-transition mode="out-in">
+        <router-view/>
+      </v-slide-y-transition>
+      <app-fab></app-fab>
     </v-content>
     <v-footer app>
       <span>Qwestr &copy; 2018</span>
@@ -51,14 +55,20 @@
 </template>
 
 <script>
+import FAB from '@/components/FAB'
+
 export default {
   name: 'App',
+  components: {
+    'app-fab': FAB
+  },
   data () {
     return {
       drawer: false,
       items: [{
-        icon: 'bubble_chart',
-        title: 'Qwests'
+        icon: 'home',
+        title: 'Home',
+        to: { name: 'home' }
       }],
       miniVariant: false,
       title: 'Qwestr'

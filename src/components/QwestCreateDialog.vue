@@ -1,16 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="500">
-    <v-btn
-      fab
-      dark
-      fixed
-      bottom
-      right
-      color="green"
-      slot="activator"
-    >
-      <v-icon>add</v-icon>
-    </v-btn>
+  <v-dialog v-model="qwestCreateDialog" persistent max-width="500">
     <v-card>
       <v-card-title>
         <span class="headline">Create Qwest</span>
@@ -27,7 +16,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="secondary" flat @click="dialog = false">Close</v-btn>
+        <v-btn color="secondary" flat @click="closeDialog">Close</v-btn>
         <v-btn color="primary" flat @click="createQwest">Create</v-btn>
       </v-card-actions>
     </v-card>
@@ -42,8 +31,12 @@ export default {
     return {
       qwest: {
         name: null
-      },
-      dialog: false
+      }
+    }
+  },
+  computed: {
+    qwestCreateDialog () {
+      return this.$store.getters['qwestCreateDialog']
     }
   },
   methods: {
@@ -54,10 +47,14 @@ export default {
         // Clear the inputs
         this.qwest.name = null
         // Close the dialog
-        this.dialog = false
+        this.closeDialog()
       } catch (error) {
         console.log('error', error)
       }
+    },
+    closeDialog () {
+      // Dispatch the toggleQwestCreateDialog action
+      this.$store.dispatch('toggleQwestCreateDialog')
     }
   },
   created () {
