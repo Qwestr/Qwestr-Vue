@@ -4,7 +4,7 @@
     :items="qwests"
     :pagination.sync="pagination"
     item-key="name"
-    class="elevation-1"
+    class="elevation-5 mt-3"
   >
     <template slot="headers" slot-scope="props">
       <tr>
@@ -111,12 +111,6 @@ export default {
   created () {
     // Setup Firebase references
     this.$bindAsArray('qwests', userQwestsRef())
-    // Dispatch the storeFAB action
-    this.$store.dispatch('storeFAB', { id: 'QwestListFAB' })
-  },
-  beforeDestroy () {
-    // Dispatch the clearFAB action
-    this.$store.dispatch('clearFAB')
   }
 }
 </script>

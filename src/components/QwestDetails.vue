@@ -15,7 +15,7 @@
             <v-icon color="teal">check_circle</v-icon>
           </v-btn>
         </v-card-title>
-        <v-card-text class="grey--text">
+        <v-card-text class="grey--text mx-2">
           <div v-if="!qwest.description">
             <i>
               No Description Available
@@ -25,7 +25,10 @@
             <vue-markdown :source="qwest.description"></vue-markdown>
           </div>
         </v-card-text>
-        <app-sub-qwest-list></app-sub-qwest-list>
+        <div class="mx-3 py-3">
+          <h2>SubQwests</h2>
+          <app-sub-qwest-list></app-sub-qwest-list>
+        </div>
       </v-card>
       <v-card v-else key="edit">
         <v-card-title>
