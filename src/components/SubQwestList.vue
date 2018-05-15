@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { userQwestsRef } from '@/firebase'
+import { userSubQwestsRef } from '@/firebase'
 
 export default {
   data () {
@@ -110,7 +110,7 @@ export default {
   },
   created () {
     // Setup Firebase references
-    this.$bindAsArray('qwests', userQwestsRef())
+    this.$bindAsArray('qwests', userSubQwestsRef(this.$route.params.key))
   }
 }
 </script>
