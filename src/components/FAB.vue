@@ -46,7 +46,7 @@
           dark
           small
           color="orange"
-          @click="toggleQwestDetailsEditMode()"
+          @click="toggleQwestDetailsEditMode"
         >
           <v-icon>edit</v-icon>
         </v-btn>
@@ -55,6 +55,7 @@
           dark
           small
           color="green"
+          @click="toggleSubQwestCreateDialog"
         >
           <v-icon>add</v-icon>
         </v-btn>
@@ -92,6 +93,10 @@ export default {
     toggleQwestCreateDialog () {
       // Dispatch the toggleQwestCreateDialog action
       this.$store.dispatch('toggleQwestCreateDialog')
+    },
+    toggleSubQwestCreateDialog () {
+      // Dispatch the toggleSubQwestCreateDialog action
+      this.$store.dispatch('toggleSubQwestCreateDialog')
     }
   }
 }
