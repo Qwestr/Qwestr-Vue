@@ -17,7 +17,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="secondary" flat @click="closeDialog">Close</v-btn>
-        <v-btn color="primary" flat @click="updateQwest">Update</v-btn>
+        <v-btn color="primary" flat @click="updateSubQwest">Update</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
