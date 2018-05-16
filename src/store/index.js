@@ -10,8 +10,10 @@ const state = {
   user: {},
   fab: {},
   qwest: {},
+  subQwest: {},
   qwestCreateDialog: false,
-  qwestDetailsEditMode: false
+  qwestDetailsEditMode: false,
+  subQwestCreateDialog: false
 }
 
 export const getters = {
@@ -30,11 +32,20 @@ export const getters = {
   isQwestLoaded (state) {
     return !_.isEmpty(state.qwest)
   },
+  subQwest (state) {
+    return state.subQwest
+  },
+  isSubQwestLoaded (state) {
+    return !_.isEmpty(state.subQwest)
+  },
   qwestCreateDialog (state) {
     return state.qwestCreateDialog
   },
   qwestDetailsEditMode (state) {
     return state.qwestDetailsEditMode
+  },
+  subQwestCreateDialog (state) {
+    return state.subQwestCreateDialog
   }
 }
 
@@ -57,6 +68,12 @@ export const mutations = {
   clearQwest (state) {
     state.qwest = {}
   },
+  storeSubQwest (state, payload) {
+    state.subQwest = payload
+  },
+  clearSubQwest (state) {
+    state.subQwest = {}
+  },
   toggleFABDial (state) {
     state.fab.dial = !state.fab.dial
   },
@@ -69,12 +86,17 @@ export const mutations = {
   resetQwestDetailsEditMode (state) {
     state.qwestDetailsEditMode = false
   },
+  toggleSubQwestCreateDialog (state) {
+    state.subQwestCreateDialog = !state.subQwestCreateDialog
+  },
   clearAll (state) {
     state.user = {}
     state.fab = {}
     state.qwest = {}
+    state.subQwest = {}
     state.qwestCreateDialog = false
     state.qwestDetailsEditMode = false
+    state.subQwestCreateDialog = false
   }
 }
 
@@ -116,14 +138,28 @@ export const actions = {
     commit('storeQwest', payload)
   },
   updateQwest ({ commit }, payload) {
-    // Get Qwest reference from the payload
+    // Get qwest reference from the payload
     const qwest = payload.qwest
-    // Updated Qwest data
+    // Updated qwest data
     qwest.set(payload.data)
   },
   clearQwest ({ commit }) {
     // Commit the corresponding mutation
     commit('clearQwest')
+  },
+  storeSubQwest ({ commit }, payload) {
+    // Commit the corresponding mutation
+    commit('storeSubQwest', payload)
+  },
+  updateSubQwest ({ commit }, payload) {
+    // Get subQwest reference from the payload
+    const subQwest = payload.subQwest
+    // Updated subQwest data
+    subQwest.set(payload.data)
+  },
+  clearSubQwest ({ commit }) {
+    // Commit the corresponding mutation
+    commit('clearSubQwest')
   },
   toggleFABDial ({ commit }) {
     // Commit the corresponding mutation
@@ -140,6 +176,10 @@ export const actions = {
   resetQwestDetailsEditMode ({ commit }) {
     // Commit the corresponding mutation
     commit('resetQwestDetailsEditMode')
+  },
+  toggleSubQwestCreateDialog ({ commit }) {
+    // Commit the corresponding mutation
+    commit('toggleSubQwestCreateDialog')
   }
 }
 

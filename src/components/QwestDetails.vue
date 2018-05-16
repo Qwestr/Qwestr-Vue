@@ -15,7 +15,7 @@
             <v-icon color="teal">check_circle</v-icon>
           </v-btn>
         </v-card-title>
-        <v-card-text class="grey--text">
+        <v-card-text class="grey--text mx-2">
           <div v-if="!qwest.description">
             <i>
               No Description Available
@@ -25,6 +25,10 @@
             <vue-markdown :source="qwest.description"></vue-markdown>
           </div>
         </v-card-text>
+        <div class="mx-3 py-3">
+          <h2>SubQwests</h2>
+          <app-sub-qwest-list></app-sub-qwest-list>
+        </div>
       </v-card>
       <v-card v-else key="edit">
         <v-card-title>
@@ -63,11 +67,16 @@
         </v-form>
       </v-card>
     </v-fade-transition>
+    <app-sub-qwest-create-dialog></app-sub-qwest-create-dialog>
+    <app-sub-qwest-edit-dialog></app-sub-qwest-edit-dialog>
   </v-container>
 </template>
 
 <script>
 import VueMarkdown from 'vue-markdown'
+import SubQwestCreateDialog from '@/components/SubQwestCreateDialog'
+import SubQwestEditDialog from '@/components/SubQwestEditDialog'
+import SubQwestList from '@/components/SubQwestList'
 import { userQwestRef } from '@/firebase'
 import validations from '@/validations'
 
@@ -82,6 +91,9 @@ export default {
     }
   },
   components: {
+    'app-sub-qwest-list': SubQwestList,
+    'app-sub-qwest-create-dialog': SubQwestCreateDialog,
+    'app-sub-qwest-edit-dialog': SubQwestEditDialog,
     VueMarkdown
   },
   computed: {
