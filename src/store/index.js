@@ -74,7 +74,7 @@ export const mutations = {
     state.qwestDetailsEditMode = false
   },
   toggleSubQwestCreateDialog (state) {
-    state.qwestCreateDialog = !state.subQwestCreateDialog
+    state.subQwestCreateDialog = !state.subQwestCreateDialog
   },
   clearAll (state) {
     state.user = {}

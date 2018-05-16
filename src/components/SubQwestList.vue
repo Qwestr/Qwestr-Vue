@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="qwests"
+    :items="subQwests"
     :pagination.sync="pagination"
     item-key="name"
     class="elevation-5 mt-3"
@@ -25,21 +25,21 @@
       <tr>
         <td>{{ props.item.name }}</td>
         <td class="px-5">
-          <v-btn v-if="!props.item.completed" @click="completeQwest(props.item)" icon class="mx-0">
+          <v-btn v-if="!props.item.completed" @click="completeSubQwest(props.item)" icon class="mx-0">
             <v-icon color="grey">check_circle</v-icon>
           </v-btn>
-          <v-btn v-else @click="restartQwest(props.item)" icon class="mx-0">
+          <v-btn v-else @click="restartSubQwest(props.item)" icon class="mx-0">
             <v-icon color="teal">check_circle</v-icon>
           </v-btn>
         </td>
         <td class="justify-center layout px-0">
-          <v-btn :to="{ name: 'qwest-details', params: { key: props.item['.key'] } }" icon class="mx-0">
+          <v-btn :to="{ name: 'sub-qwest-details', params: { key: props.item['.key'] } }" icon class="mx-0">
             <v-icon color="cyan">visibility</v-icon>
           </v-btn>
-          <v-btn @click="editQwest(props.item)" icon class="mx-0">
+          <v-btn @click="editSubQwest(props.item)" icon class="mx-0">
             <v-icon color="orange">edit</v-icon>
           </v-btn>
-          <v-btn @click="deleteQwest(props.item)" icon class="mx-0">
+          <v-btn @click="deleteSubQwest(props.item)" icon class="mx-0">
             <v-icon color="pink">delete</v-icon>
           </v-btn>
         </td>
@@ -54,13 +54,13 @@ import { userSubQwestsRef } from '@/firebase'
 export default {
   data () {
     return {
-      qwests: {},
+      subQwests: {},
       pagination: {
         sortBy: 'name',
         descending: true
       },
       headers: [
-        { text: 'Qwest', value: 'name', align: 'left', sortable: true },
+        { text: 'SubQwest', value: 'name', align: 'left', sortable: true },
         { text: 'Status', value: 'completed', align: 'left', sortable: true },
         { text: 'Actions', value: 'action', sortable: false }
       ]
@@ -94,23 +94,23 @@ export default {
         this.pagination.descending = false
       }
     },
-    completeQwest (qwest) {
-      this.$firebaseRefs.qwests.child(qwest['.key']).child('completed').set(true)
+    completeSubQwest (subQwest) {
+      this.$firebaseRefs.subQwests.child(subQwest['.key']).child('completed').set(true)
     },
-    restartQwest (qwest) {
-      this.$firebaseRefs.qwests.child(qwest['.key']).child('completed').set(null)
+    restartSubQwest (subQwest) {
+      this.$firebaseRefs.subQwests.child(subQwest['.key']).child('completed').set(null)
     },
-    editQwest (qwest) {
-      // Dispatch the storeQwest action
-      this.$store.dispatch('storeQwest', qwest)
+    editSubQwest (subQwest) {
+      // Dispatch the storeSubQwest action
+      this.$store.dispatch('storeSubQwest', subQwest)
     },
-    deleteQwest (qwest) {
-      this.$firebaseRefs.qwests.child(qwest['.key']).remove()
+    deleteSubQwest (subQwest) {
+      this.$firebaseRefs.subQwests.child(subQwest['.key']).remove()
     }
   },
   created () {
     // Setup Firebase references
-    this.$bindAsArray('qwests', userSubQwestsRef(this.$route.params.key))
+    this.$bindAsArray('subQwests', userSubQwestsRef(this.$route.params.key))
   }
 }
 </script>

@@ -67,11 +67,13 @@
         </v-form>
       </v-card>
     </v-fade-transition>
+    <app-sub-qwest-create-dialog></app-sub-qwest-create-dialog>
   </v-container>
 </template>
 
 <script>
 import VueMarkdown from 'vue-markdown'
+import SubQwestCreateDialog from '@/components/SubQwestCreateDialog'
 import SubQwestList from '@/components/SubQwestList'
 import { userQwestRef } from '@/firebase'
 import validations from '@/validations'
@@ -88,6 +90,7 @@ export default {
   },
   components: {
     'app-sub-qwest-list': SubQwestList,
+    'app-sub-qwest-create-dialog': SubQwestCreateDialog,
     VueMarkdown
   },
   computed: {
