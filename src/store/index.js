@@ -36,6 +36,9 @@ export const getters = {
   },
   qwestDetailsEditMode (state) {
     return state.qwestDetailsEditMode
+  },
+  subQwestCreateDialog (state) {
+    return state.subQwestCreateDialog
   }
 }
 
