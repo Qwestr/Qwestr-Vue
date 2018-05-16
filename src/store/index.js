@@ -11,7 +11,8 @@ const state = {
   fab: {},
   qwest: {},
   qwestCreateDialog: false,
-  qwestDetailsEditMode: false
+  qwestDetailsEditMode: false,
+  subQwestCreateDialog: false
 }
 
 export const getters = {
@@ -69,12 +70,16 @@ export const mutations = {
   resetQwestDetailsEditMode (state) {
     state.qwestDetailsEditMode = false
   },
+  toggleSubQwestCreateDialog (state) {
+    state.qwestCreateDialog = !state.subQwestCreateDialog
+  },
   clearAll (state) {
     state.user = {}
     state.fab = {}
     state.qwest = {}
     state.qwestCreateDialog = false
     state.qwestDetailsEditMode = false
+    state.subQwestCreateDialog = false
   }
 }
 
@@ -140,6 +145,10 @@ export const actions = {
   resetQwestDetailsEditMode ({ commit }) {
     // Commit the corresponding mutation
     commit('resetQwestDetailsEditMode')
+  },
+  toggleSubQwestCreateDialog ({ commit }) {
+    // Commit the corresponding mutation
+    commit('toggleSubQwestCreateDialog')
   }
 }
 
