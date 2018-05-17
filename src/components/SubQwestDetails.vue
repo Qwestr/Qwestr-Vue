@@ -3,7 +3,7 @@
     <v-fade-transition mode="out-in">
       <v-card v-if="!subQwestDetailsEditMode" key="details">
         <v-card-title primary-title class="headline">
-          <v-btn icon :to="{ name: 'home' }" exact>
+          <v-btn icon :to="{ name: 'qwest-details', params: { key: $route.params.qwestKey } }" exact>
             <v-icon color="grey">chevron_left</v-icon>
           </v-btn>
           {{ subQwest.name }}
