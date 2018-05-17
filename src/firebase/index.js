@@ -16,8 +16,13 @@ const userSubQwestsRef = (key) => {
   return db.ref('users/' + store.getters['user'].uid + '/qwests/' + key + '/subQwests')
 }
 
+const userSubQwestRef = (qwestKey, subQwestKey) => {
+  return db.ref('users/' + store.getters['user'].uid + '/qwests/' + qwestKey + '/subQwests/' + subQwestKey)
+}
+
 export {
   userQwestsRef,
   userQwestRef,
-  userSubQwestsRef
+  userSubQwestsRef,
+  userSubQwestRef
 }
