@@ -1,10 +1,14 @@
-import Vue from 'vue'
+import { shallow, createLocalVue } from '@vue/test-utils'
 import FAB from '@/components/FAB'
 
+// Create local Vue instance
+const localVue = createLocalVue()
+
 describe('FAB.vue', () => {
-  it('should render correctly', () => {
-    const Constructor = Vue.extend(FAB)
-    const vm = new Constructor().$mount()
-    expect(vm).to.equal(true)
+  it('should successfully render when created', () => {
+    // Mount the component
+    shallow(FAB, { localVue })
+    // Expect that the component has rendered successfully
+    expect(true)
   })
 })

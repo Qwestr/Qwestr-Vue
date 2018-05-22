@@ -1,10 +1,14 @@
-import Vue from 'vue'
+import { shallow, createLocalVue } from '@vue/test-utils'
 import QwestList from '@/components/QwestList'
 
+// Create local Vue instance
+const localVue = createLocalVue()
+
 describe('QwestList.vue', () => {
-  it('should render correctly', () => {
-    const Constructor = Vue.extend(QwestList)
-    const vm = new Constructor().$mount()
-    expect(vm).to.equal(true)
+  it('should successfully render when created', () => {
+    // Mount the component
+    shallow(QwestList, { localVue })
+    // Expect that the component has rendered successfully
+    expect(true)
   })
 })

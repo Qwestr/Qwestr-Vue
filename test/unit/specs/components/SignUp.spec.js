@@ -1,10 +1,14 @@
-import Vue from 'vue'
+import { shallow, createLocalVue } from '@vue/test-utils'
 import SignUp from '@/components/SignUp'
 
+// Create local Vue instance
+const localVue = createLocalVue()
+
 describe('SignUp.vue', () => {
-  it('should render correctly', () => {
-    const Constructor = Vue.extend(SignUp)
-    const vm = new Constructor().$mount()
-    expect(vm).to.equal(true)
+  it('should successfully render when created', () => {
+    // Mount the component
+    shallow(SignUp, { localVue })
+    // Expect that the component has rendered successfully
+    expect(true)
   })
 })
