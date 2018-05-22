@@ -1,7 +1,7 @@
 {
-  "name": "qwestr",
+  "name": "qwestr-vue",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A VueJS application for Qwestr",
   "author": "Shawn Daichendt <shawn.daichendt@gmail.com>",
   "private": true,
   "scripts": {
@@ -14,8 +14,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "firebase": "^4.12.1",
+    "lodash": "^4.17.5",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-markdown": "^2.2.4",
+    "vue-router": "^3.0.1",
+    "vuefire": "^1.4.5",
+    "vuetify": "^1.0.0",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
