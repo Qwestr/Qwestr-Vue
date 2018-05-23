@@ -1,4 +1,4 @@
-import { shallow, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import FAB from '@/components/FAB'
 
@@ -23,7 +23,7 @@ describe('FAB.vue', () => {
 
   it('should successfully render when created', () => {
     // Mount the component
-    shallow(FAB, { localVue, store })
+    shallowMount(FAB, { localVue, store })
     // Expect that the component has rendered successfully
     expect(true)
   })
