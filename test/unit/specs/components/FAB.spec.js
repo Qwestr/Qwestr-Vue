@@ -1,29 +1,35 @@
-// import { shallowMount, createLocalVue } from '@vue/test-utils'
-// import Vuex from 'vuex'
-// import FAB from '@/components/FAB'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
+import Vuex from 'vuex'
+import FAB from '@/components/FAB'
 
 // Create local Vue instance
-// const localVue = createLocalVue()
+const localVue = createLocalVue()
 // Load Vuex into local Vue instance
-// localVue.use(Vuex)
+localVue.use(Vuex)
 
 describe('FAB.vue', () => {
   // Declare mock store values
-  // let store, actions
+  let store, getters, actions
 
-  // beforeEach(() => {
-  //   // Initialize mock actions
-  //   actions = {
-  //     'toggleFABDial': jest.fn(),
-  //     'toggleQwestCreateDialog': jest.fn()
-  //   }
-  //   // Initialize mock store
-  //   store = new Vuex.Store({ actions })
-  // })
+  beforeEach(() => {
+    // Initialize mock getters
+    getters = {
+      'fab': jest.fn(() => {
+        return {}
+      })
+    }
+    // Initialize mock actions
+    actions = {
+      'toggleFABDial': jest.fn(),
+      'toggleQwestCreateDialog': jest.fn()
+    }
+    // Initialize mock store
+    store = new Vuex.Store({ getters, actions })
+  })
 
   it('should successfully render when created', () => {
     // Mount the component
-    // shallowMount(FAB, { localVue, store })
+    shallowMount(FAB, { localVue, store })
     // Expect that the component has rendered successfully
     expect(true)
   })
