@@ -17,6 +17,7 @@ describe('Home.vue', () => {
     // Initialize mock store
     store = new Vuex.Store({ getters })
   })
+
   it('should successfully render when created', () => {
     // Mount the component
     shallowMount(Home, { localVue, store })
