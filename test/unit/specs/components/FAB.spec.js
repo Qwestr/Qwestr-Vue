@@ -4,8 +4,6 @@ import FAB from '@/components/FAB'
 
 // Create local Vue instance
 const localVue = createLocalVue()
-// Load Vuex into local Vue instance
-localVue.use(Vuex)
 
 describe('FAB.vue', () => {
   // Declare mock store values

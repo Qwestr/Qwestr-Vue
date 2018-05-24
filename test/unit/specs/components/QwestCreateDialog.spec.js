@@ -4,8 +4,6 @@ import QwestCreateDialog from '@/components/QwestCreateDialog'
 
 // Create local Vue instance
 const localVue = createLocalVue()
-// Load Vuex into local Vue instance
-localVue.use(Vuex)
 
 describe('QwestCreateDialog.vue', () => {
   // Declare mock store values

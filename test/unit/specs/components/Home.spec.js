@@ -4,8 +4,6 @@ import Home from '@/components/Home'
 
 // Create local Vue instance
 const localVue = createLocalVue()
-// Load Vuex into local Vue instance
-localVue.use(Vuex)
 
 describe('Home.vue', () => {
   // Declare mock store values
