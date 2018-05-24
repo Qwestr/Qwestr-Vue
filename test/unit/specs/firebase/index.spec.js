@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import {
   userQwestsRef
   // userQwestRef,
@@ -7,9 +8,9 @@ import {
 
 describe('index.js', () => {
   describe('userQwestsRef', () => {
-    it('should return the correct result', () => {
+    it('should return a valid reference object', () => {
       // Expect that the method returns the correct result
-      expect(userQwestsRef()).toEqual(true)
+      expect(!_.isEmpty(userQwestsRef())).toEqual(true)
     })
   })
 })

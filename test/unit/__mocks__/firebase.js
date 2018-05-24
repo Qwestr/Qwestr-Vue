@@ -4,7 +4,9 @@ export default {
       database: jest.fn(() => {
         return {
           ref: jest.fn(() => {
-            return true
+            return {
+              on: jest.fn()
+            }
           })
         }
       })
