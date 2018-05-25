@@ -1,10 +1,31 @@
-import Vue from 'vue'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
+import Vuex from 'vuex'
 import SubQwestEditDialog from '@/components/SubQwestEditDialog'
 
+// Create local Vue instance
+const localVue = createLocalVue()
+
 describe('SubQwestEditDialog.vue', () => {
-  it('should render correctly', () => {
-    const Constructor = Vue.extend(SubQwestEditDialog)
-    const vm = new Constructor().$mount()
-    expect(vm).to.equal(true)
+  // Declare mock store values
+  let store, getters
+  // Create mock $route
+  const $route = {
+    params: {
+      key: 'sub-qwest-key'
+    }
+  }
+
+  beforeEach(() => {
+    // Initialize mock getters
+    getters = {}
+    // Initialize mock store
+    store = new Vuex.Store({ getters })
+  })
+
+  it('should successfully render when created', () => {
+    // Mount the component
+    shallowMount(SubQwestEditDialog, { localVue, store, mocks: { $route } })
+    // Expect that the component has rendered successfully
+    expect(true)
   })
 })

@@ -15,19 +15,25 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(VueFire)
 Vue.use(Vuetify)
 
+// Setup Vue config
 Vue.config.productionTip = false
+
+// Initialize Vue application
+let app = null
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     // Dispatch the storeUser action
     store.dispatch('storeUser', user)
   }
-  // Load main VueJS component
-  new Vue({
-    el: '#app',
-    router,
-    store,
-    components: { App },
-    template: '<App/>'
-  })
+  // Load main VueJS component (if not loaded)
+  if (app === null) {
+    app = new Vue({
+      el: '#app',
+      router,
+      store,
+      components: { App },
+      template: '<App/>'
+    })
+  }
 })

@@ -49,7 +49,9 @@
       <app-fab></app-fab>
     </v-content>
     <v-footer app>
-      <span>Qwestr &copy; 2018</span>
+      <div class="mx-2">
+        <span>Qwestr &copy;2018 ({{ version }})</span>
+      </div>
     </v-footer>
   </v-app>
 </template>
@@ -71,7 +73,8 @@ export default {
         to: { name: 'home' }
       }],
       miniVariant: false,
-      title: 'Qwestr'
+      title: 'Qwestr',
+      version: process.VERSION
     }
   },
   computed: {

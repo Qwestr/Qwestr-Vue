@@ -1,10 +1,21 @@
-import Vue from 'vue'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import SubQwestList from '@/components/SubQwestList'
 
+// Create local Vue instance
+const localVue = createLocalVue()
+
 describe('SubQwestList.vue', () => {
-  it('should render correctly', () => {
-    const Constructor = Vue.extend(SubQwestList)
-    const vm = new Constructor().$mount()
-    expect(vm).to.equal(true)
+  // Create mock $route
+  const $route = {
+    params: {
+      key: 'sub-qwest-key'
+    }
+  }
+
+  it('should successfully render when created', () => {
+    // Mount the component
+    shallowMount(SubQwestList, { localVue, mocks: { $route } })
+    // Expect that the component has rendered successfully
+    expect(true)
   })
 })
