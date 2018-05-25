@@ -1,6 +1,6 @@
 # Qwestr-Vue
 
-> A VueJS prototype application for Qwestr, built using https://github.com/vuetifyjs/pwa
+> A VueJS application for Qwestr
 
 ## Build Setup
 
@@ -27,4 +27,12 @@ npm run e2e
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Deployment
+
+``` bash
+# build for production with minification
+npm run build
+
+# deploy to firebase
+firebase deploy
+```

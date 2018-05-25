@@ -1,19 +1,18 @@
 <template>
   <v-app>
     <v-navigation-drawer
-      persistent
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      enable-resize-watcher
-      fixed
       app
+      persistent
+      enable-resize-watcher
+      v-model="drawer"
+      :mini-variant="miniVariant"
     >
       <v-list>
         <v-list-tile
-          value="true"
           v-for="(item, i) in items"
           :key="i"
+          :to="item.to"
+          exact
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -24,68 +23,72 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar
-      app
-      :clipped-left="clipped"
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
+    <v-toolbar app>
+      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+      <v-btn icon @click="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>remove</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>menu</v-icon>
-      </v-btn>
+      <v-toolbar-items>
+        <router-link v-if="!isUserLoaded" :to="{name: 'login'}" tag="v-btn" class="btn--flat" activeClass="btn--active" flat>
+          Login
+        </router-link>
+        <router-link v-if="!isUserLoaded" :to="{name: 'sign-up'}" tag="v-btn" class="btn--flat" activeClass="btn--active">
+          Sign Up
+        </router-link>
+        <v-btn flat v-if="isUserLoaded" @click="logout">
+          Logout
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-content>
-      <router-view/>
+      <v-slide-y-transition mode="out-in">
+        <router-view/>
+      </v-slide-y-transition>
+      <app-fab></app-fab>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile @click="right = !right">
-          <v-list-tile-action>
-            <v-icon>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+    <v-footer app>
+      <div class="mx-2">
+        <span>Qwestr &copy;2018 ({{ version }})</span>
+      </div>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import FAB from '@/components/FAB'
+
 export default {
+  name: 'App',
+  components: {
+    'app-fab': FAB
+  },
   data () {
     return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
+      drawer: false,
       items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
+        icon: 'home',
+        title: 'Home',
+        to: { name: 'home' }
       }],
       miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Qwestr',
+      version: process.VERSION
     }
   },
-  name: 'App'
+  computed: {
+    isUserLoaded () {
+      return this.$store.getters['isUserLoaded']
+    }
+  },
+  methods: {
+    logout () {
+      // Dispatch the logout action
+      this.$store.dispatch('logout')
+      // Redirect to the home page
+      this.$router.replace({ name: 'home' })
+    }
+  }
 }
 </script>
